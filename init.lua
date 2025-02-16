@@ -133,7 +133,7 @@ vim.o.statusline = "%#StatusMode#"
 				.. " "
 				.. "%#StatusPercent#"
 				.. " "
-				.. "%p%% of file "
+				.. "--%p%%-- "
 
 -- ------------
 -- key bindings
