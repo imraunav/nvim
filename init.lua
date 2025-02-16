@@ -96,14 +96,16 @@ local mode_map = {
   ['t']      = 'TERMINAL',
 }
 
+-- functional wrapper to show mode name in statusline
 function nvimmode(  )
 	local mode = vim.api.nvim_get_mode().mode
 	local mode_name = mode_map[mode] or mode
 	return mode_name
 end
+-- set statusline
 vim.o.statusline = "%#StatusMode#"
 				.. " "
-				.. ">> %{v:lua.nvimmode(  )} <<"
+				.. "%{v:lua.nvimmode(  )}"
 				.. " "
 				.. "%#StatusType#"
 				.. " "
