@@ -2,7 +2,7 @@
 -- Editor settings
 -- ---------------
 vim.g.mapleader = "\\"					-- set leader key
-vim.g.netrw_banner = 0					-- gets rid of the annoying banner for netrw
+vim.g.netrw_banner = 1					-- gets rid of the annoying banner for netrw
 vim.g.netrw_browse_split=4				-- open in prior window
 vim.g.netrw_altv = 1					-- change from left splitting to right splitting
 vim.g.netrw_liststyle=3					-- tree style view in netrw
@@ -109,7 +109,7 @@ vim.o.statusline = "%#StatusMode#"
 				.. " "
 				.. "%#StatusType#"
 				.. " "
-				.. "type: "
+				.. ""
 				.. "%{&filetype}" 
 				.. " "
 				.. "%#StatusFile#"
@@ -129,7 +129,7 @@ vim.o.statusline = "%#StatusMode#"
 				.. " "
 				.. "%#StatusLocation#"
 				.. " "
-				.. "l;c: %l;%c"
+				.. "l,c: %l,%c"
 				.. " "
 				.. "%#StatusPercent#"
 				.. " "
@@ -154,17 +154,17 @@ map("n", "<leader>r", ":source ~/.config/nvim/init.lua<CR>")	-- reload neovim co
 map("n", "<C-s>", ":w<CR>")
 
 -- Open netrw in 25% split in tree view
-map("n", "<leader>l", ":25Lex<CR>")					-- space+e toggles netrw tree view
+map("n", "<leader>l", ":25Lex<CR>")					-- leader+l toggles netrw tree view
 
 -- Tab bindings 
-map("n", "<leader>t", ":tabnew<CR>")				-- space+t creates new tab
-map("n", "<leader>x", ":tabclose<CR>")				-- space+tx closes current tab
-map("n", "<leader>p", ":tabprevious<CR>")			-- space+pt moves to previous tab
-map("n", "<leader>n", ":tabnext<CR>")				-- space+nt moves to next tab
+map("n", "<leader>t", ":tabnew<CR>")				-- leader+t creates new tab
+map("n", "<leader>x", ":tabclose<CR>")				-- leader+x closes current tab
+map("n", "<leader>p", ":tabprevious<CR>")			-- leader+p moves to previous tab
+map("n", "<leader>n", ":tabnext<CR>")				-- leader+n moves to next tab
 
 -- easy split generation
-map("n", "<leader>vs", ":vsplit<CR>")				-- space+vs creates a veritcal split
-map("n", "<leader>hs", ":split<CR>")				-- space+hs creates a horizontal split
+map("n", "<leader>vs", ":vsplit<CR>")				-- leader+vs creates a veritcal split
+map("n", "<leader>hs", ":split<CR>")				-- leader+hs creates a horizontal split
 
 -- easy split navigation
 -- map("n", "<leader>w", "<C-w>h")						-- leader+w switches to left split
@@ -177,9 +177,9 @@ map("n", "<leader>vl", ":vertical resize +3<CR>")		-- leader+vl resizes vertical
 map("n", "<leader>vr", ":vertical resize -3<CR>")		-- leader+vr resizes vertical split -
 
 -- buffer navigation
--- map("n", "<leader>nb", ":bnext <CR>")					-- Space+nb goes to next buffer
--- map("n", "<leader>pb", ":bprevious <CR>")				-- Space+pb goes to previous buffer
--- map("n", "<leader>db", ":bd! <CR>")						-- Space+db delets current buffer
+-- map("n", "<leader>nb", ":bnext <CR>")					-- leader+nb goes to next buffer
+-- map("n", "<leader>pb", ":bprevious <CR>")				-- leader+pb goes to previous buffer
+-- map("n", "<leader>db", ":bd! <CR>")						-- leader+db delets current buffer
 
 -- Visual Maps
 map("v", "<leader>r", "\"hy:%s/<C-r>h//g<left><left>")	-- Replace all instances of highlighted words 
