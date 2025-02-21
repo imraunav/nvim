@@ -187,7 +187,7 @@ map("v", "J", ":m '>+1<CR>gv=gv")						-- Move current line down
 map("v", "K", ":m '>-2<CR>gv=gv")						-- Move current line up
 
 -- Popup menu
-map("i", "<C-p>", "<C-n>")								-- select autocomplete popup menu
+-- map("i", "<C-p>", "<C-n>")								-- select autocomplete popup menu
 
 -- Automatically close brackets, parethesis, and quotes
 map("i", "'", "''<left>")
