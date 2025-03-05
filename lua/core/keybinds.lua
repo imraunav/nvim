@@ -6,24 +6,29 @@ local opts = {
 }
 
 -- reload config
-vim.keymap.set("n", "<leader>r", ":source ~/.config/nvim/init.lua<CR>", opts)
+vim.keymap.set("n", "<leader>r", "<cmd>source ~/.config/nvim/init.lua<CR>", opts)
 
 -- save file
-vim.keymap.set("n", "<C-s>", ":w<CR>", opts)
+vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", opts)
 
 -- tab ops
-vim.keymap.set("n", "<leader>t", ":tabnew<CR>", opts)
-vim.keymap.set("n", "<leader>p", ":tabprevious<CR>", opts)
-vim.keymap.set("n", "<leader>n", ":tabnext<CR>", opts)
-vim.keymap.set("n", "<leader>x", ":tabclose<CR>", opts)
+vim.keymap.set("n", "<leader>t", "<cmd>tabnew<CR>", opts)
+vim.keymap.set("n", "<leader>p", "<cmd>tabprevious<CR>", opts)
+vim.keymap.set("n", "<leader>n", "<cmd>tabnext<CR>", opts)
+vim.keymap.set("n", "<leader>x", "<cmd>tabclose<CR>", opts)
+
+-- buffer navigation
+vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", opts)
+vim.keymap.set("n", "<leader>bp", "<cmd>bprev<CR>", opts)
+vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", opts)
 
 -- easy split
-vim.keymap.set("n", "<leader>vs", ":vsplit<CR>", opts)
-vim.keymap.set("n", "<leader>hs", ":split<CR>", opts)
+vim.keymap.set("n", "<leader>vs", "<cmd>vsplit<CR>", opts)
+vim.keymap.set("n", "<leader>hs", "<cmd>split<CR>", opts)
 
 -- line/block move
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
+vim.keymap.set("v", "J", "<cmd>m '>+1<CR>gv=gv", opts)
+vim.keymap.set("v", "K", "<cmd>m '<-2<CR>gv=gv", opts)
 
 -- explore key
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex, opts)
@@ -53,7 +58,7 @@ vim.keymap.set("v", "[]", "c[<C-R>\"]<Esc>", opts)
 vim.keymap.set("x", "<leader>p", "\"_dP", opts)
 
 -- replace instance of highlighted word
-vim.keymap.set("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', opts) 
+vim.keymap.set("v", "<leader>r", '"hy<cmd>%s/<C-r>h//g<left><left>', opts) 
 
 -- clear highlight when <Esc>
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", opts)
