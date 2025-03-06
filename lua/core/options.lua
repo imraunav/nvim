@@ -22,6 +22,9 @@ vim.opt.splitright = true -- vertical split to the right
 vim.opt.showtabline = 2 -- always show tabline
 vim.opt.laststatus = 2 -- always show statusline
 vim.opt.showcmd = true
+vim.opt.pumblend = 15
+-- vim.opt.winbar = "%=%F  "
+-- vim.opt.winblend = 80
 
 -- tab setting
 vim.opt.expandtab = true -- expand tab
@@ -57,7 +60,7 @@ vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entere
 -- scroll and misc
 vim.opt.scrolloff = 8 -- scroll page when cursor is 8 lines from top/bottom
 vim.opt.sidescrolloff = 8 -- scroll page when cursor is 8 spaces from left/right
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:2"
 vim.opt.colorcolumn = "100"
 vim.opt.isfname:append("@-@")
 vim.opt.cmdheight = 2
@@ -73,8 +76,9 @@ vim.opt.updatetime = 50
 vim.opt.timeoutlen = 600
 
 -- show white space chars
-vim.opt.list = true
-vim.opt.listchars = { tab = '<->', nbsp = '␣', multispace = "." }
+vim.opt.list = false
+vim.opt.listchars = { tab = '<->', nbsp = '␣', multispace = ".", leadmultispace = "___|" }
 
 -- preview substitutions live!
 vim.opt.inccommand = 'split'
+
