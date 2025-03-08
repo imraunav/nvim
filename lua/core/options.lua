@@ -60,7 +60,7 @@ vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entere
 -- scroll and misc
 vim.opt.scrolloff = 8 -- scroll page when cursor is 8 lines from top/bottom
 vim.opt.sidescrolloff = 8 -- scroll page when cursor is 8 spaces from left/right
-vim.opt.signcolumn = "yes:2"
+vim.opt.signcolumn = "yes:1"
 vim.opt.colorcolumn = "100"
 vim.opt.isfname:append("@-@")
 vim.opt.cmdheight = 2
@@ -77,7 +77,7 @@ vim.opt.timeoutlen = 600
 
 -- show white space chars
 vim.opt.list = false
-vim.opt.listchars = { tab = '<->', nbsp = '␣', multispace = ".", leadmultispace = "___|" }
+vim.opt.listchars = { tab = '<->', nbsp = '␣', multispace = ".", leadmultispace = "." }
 
 -- preview substitutions live!
 vim.opt.inccommand = 'split'

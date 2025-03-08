@@ -1,3 +1,5 @@
 require("core")
+require("config.lazy")
 
-vim.cmd("colorscheme retrobox")
+-- colorscheme
+vim.cmd.colorscheme("everforest")
