@@ -1,5 +1,5 @@
-require("core")
-require("config.lazy")
+require("config")
 
 -- colorscheme
 vim.cmd.colorscheme("everforest")
+vim.opt.background = "dark"

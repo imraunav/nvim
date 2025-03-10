@@ -29,8 +29,8 @@ vim.keymap.set("n", "<leader>bf", "<Cmd>buffers<CR>:b ", opts)
 -- vim.keymap.set("n", "<leader>hs", "<Cmd>split<CR>", opts)
 
 -- line/block move
-vim.keymap.set("v", "J", "<Cmd>m '>+1<CR>gv=gv", opts)
 vim.keymap.set("v", "K", "<Cmd>m '<-2<CR>gv=gv", opts)
+vim.keymap.set("v", "J", "<Cmd>m '>+1<CR>gv=gv", opts)
 
 -- explore key
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex, opts)
