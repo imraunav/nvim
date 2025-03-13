@@ -46,7 +46,6 @@ return {
             },
         },
         config = function()
-
             -- autocommand to add keypress capabilities on attaching to a buffer
             vim.api.nvim_create_autocmd("LspAttach", {
                 desc = "LSP actions",
@@ -67,7 +66,7 @@ return {
                     vim.keymap.set('n', 'gs', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
                     -- Rename the variable under your cursor.
                     vim.keymap.set('n', '<F2>', '<Cmd>lua vim.lsp.buf.rename()<Cr>', opts)
-                    vim.keymap.set({'n', 'x'}, '<F3>', '<Cmd>lua vim.lsp.buf.format({async = true})<Cr>', opts)
+                    vim.keymap.set({ 'n', 'x' }, '<F3>', '<Cmd>lua vim.lsp.buf.format({async = true})<Cr>', opts)
                     -- Execute a code action, usually your cursor needs to be on top of an error
                     -- or a suggestion from your LSP for this to activate.
                     vim.keymap.set('n', '<F4>', '<Cmd>lua vim.lsp.buf.code_action()<Cr>', opts)
@@ -79,7 +78,40 @@ return {
 
             -- add language servers here { (key)server_name : (lua_tbl)server_config }
             local servers = {
-                lua_ls = {},
+                lua_ls = {
+                    on_init = function(client)
+                        if client.workspace_folders then
+                            local path = client.workspace_folders[1].name
+                            if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc')) then
+                                return
+                            end
+                        end
+
+                        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+                            runtime = {
+                                -- Tell the language server which version of Lua you're using
+                                -- (most likely LuaJIT in the case of Neovim)
+                                version = 'LuaJIT'
+                            },
+                            -- Make the server aware of Neovim runtime files
+                            workspace = {
+                                checkThirdParty = false,
+                                library = {
+                                    vim.env.VIMRUNTIME
+                                    -- Depending on the usage, you might want to add additional paths here.
+                                    -- "${3rd}/luv/library"
+                                    -- "${3rd}/busted/library",
+                                }
+                                -- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
+                                -- library = vim.api.nvim_get_runtime_file("", true)
+                            }
+                        })
+                    end,
+                    settings = {
+                        Lua = {}
+                    }
+
+                },
                 clangd = {},
                 -- pyright = {}, -- install node for this to work :(
                 pylsp = {},
@@ -88,7 +120,6 @@ return {
 
             -- add formatters here
             vim.list_extend(ensure_installed, {
-                'stylua',
             })
 
             require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
@@ -115,8 +146,24 @@ return {
                     end,
                 },
             })
+
+            -- autoformat
+            vim.api.nvim_create_autocmd('LspAttach', {
+                callback = function(args)
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if not client then return end
+
+                    if client.supports_method('textDocument/formatting') then
+                        vim.api.nvim_create_autocmd('BufWritePre', {
+                            buffer = args.buf,
+                            callback = function()
+                                vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                            end,
+                        })
+                    end
+                end,
+            })
         end
 
     }
 }
-

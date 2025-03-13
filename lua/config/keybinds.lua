@@ -2,8 +2,8 @@ vim.g.mapleader = "\\"
 vim.g.maplocalleader = " "
 
 local opts = {
-    noremap = true,      -- non-recursive
-    silent = false,       -- show message
+    noremap = true, -- non-recursive
+    silent = false, -- show message
 }
 
 -- reload config
@@ -49,7 +49,7 @@ vim.keymap.set("i", "{<CR>", "{<CR>}<Up><End>", opts)
 vim.keymap.set("i", "{;<CR>", "{<CR>};<Up><End>", opts)
 vim.keymap.set("i", "/*", "/**/<Left><Left>", opts)
 
--- enclose in visual mode, little different from the one used to in vscode 
+-- enclose in visual mode, little different from the one used to in vscode
 vim.keymap.set("v", "''", "c'<C-R>\"'<Esc>", opts)
 vim.keymap.set("v", "\"\"", "c\"<C-R>\"\"<Esc>", opts)
 vim.keymap.set("v", "()", "c(<C-R>\")<Esc>", opts)
@@ -60,11 +60,10 @@ vim.keymap.set("v", "[]", "c[<C-R>\"]<Esc>", opts)
 vim.keymap.set("x", "<leader>p", "\"_dP", opts)
 
 -- replace instance of highlighted word
-vim.keymap.set("v", "<leader>r", '"hy<Cmd>%s/<C-r>h//g<Left><Left>', opts) 
+vim.keymap.set("v", "<leader>r", '"hy<Cmd>%s/<C-r>h//g<Left><Left>', opts)
 
 -- clear highlight when <Esc>
 vim.keymap.set("n", "<Esc>", "<Cmd>nohlsearch<CR><Esc>", opts)
 
 -- kind of bad
 vim.keymap.set("i", "jk", "<Esc>", opts)
-
