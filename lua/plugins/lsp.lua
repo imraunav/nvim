@@ -20,6 +20,23 @@ return {
 
             -- Useful status updates for LSP.
             { 'j-hui/fidget.nvim', opts = {} },
+
+            -- autocomplete
+            {
+                'saghen/blink.cmp',
+                main = 'blink.cmp',
+                dependencies = 'rafamadriz/friendly-snippets',
+                opts = {
+                    keymap = { preset = 'default' },
+
+                    appearance = {
+                        use_nvim_cmp_as_default = true,
+                        nerd_font_variant = 'mono'
+                    },
+                    fuzzy = { implementation = "lua" },
+                    signature = { enabled = true },
+                },
+            },
         },
 
         config = function()
@@ -74,6 +91,7 @@ return {
                 handlers = {
                     function(server_name)
                         local server_conf = servers[server_name]
+                        server_conf.capabilities = require("blink.cmp").get_lsp_capabilities()
                         lsp[server_name].setup(server_conf)
                     end,
                 },
