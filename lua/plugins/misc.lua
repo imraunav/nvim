@@ -1,5 +1,4 @@
 return {
-    { "nvim-tree/nvim-web-devicons", lazy = true },
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",

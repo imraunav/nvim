@@ -17,7 +17,7 @@ return {
                 keymaps = {
                     init_selection = "gvv", -- set to `false` to disable one of the mappings
                     node_incremental = "v",
-                    scope_incremental = none,
+                    scope_incremental = false,
                     node_decremental = "V",
                 },
             },
