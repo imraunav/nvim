@@ -3,29 +3,25 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        config = function()
-            local conf = require('ibl')
-            conf.setup({
-                enabled = true,
-                scope = {
-                    enabled = false,
-                },
-                indent = {
-                    char = '▏',
-                },
-            })
-        end,
+        opts = {
+            enabled = true,
+            scope = {
+                enabled = false,
+            },
+            indent = {
+                char = '▏',
+            },
+        },
     },
     {
         "lewis6991/gitsigns.nvim",
+        main = "gitsigns",
         lazy = false,
-        config = function()
-            local conf = require('gitsigns')
-            conf.setup()
-        end
+        opts = {},
     },
     { -- Useful plugin to show you pending keybinds.
         'folke/which-key.nvim',
+        main = "which-key",
         event = 'VimEnter', -- Sets the loading event to 'VimEnter'
         opts = {
             -- delay between pressing a key and opening which-key (milliseconds)
