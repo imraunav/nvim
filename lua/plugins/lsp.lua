@@ -113,8 +113,8 @@ return {
 
                 },
                 clangd = {},
-                -- pyright = {}, -- install node for this to work :(
-                pylsp = {},
+                pyright = {}, -- install node for this to work :(
+                -- pylsp = {},
             }
             local ensure_installed = vim.tbl_keys(servers or {})
 
