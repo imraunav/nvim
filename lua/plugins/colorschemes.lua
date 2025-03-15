@@ -9,7 +9,7 @@ return {
         opts = {
             -- Your config here
             background = "soft",
-            transparent_background_level = 1,
+            transparent_background_level = 0,
             italics = true,
             disable_italic_comments = false,
             float_style = "dim",
