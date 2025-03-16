@@ -64,7 +64,7 @@ vim.keymap.set("v", "[]", "c[<C-R>\"]<Esc>", desc_opt("[Text]"))
 vim.keymap.set("x", "<leader>p", "\"_dP", desc_opt("Paste without replace register"))
 
 -- replace instance of highlighted word
-vim.keymap.set("v", "<leader>r", '"hy<Cmd>%s/<C-r>h//g<Left><Left>', desc_opt("Replace hl text"))
+vim.keymap.set("v", "<leader>r", '"hy:%s/<C-r>h//gc<Left><Left><Left>', desc_opt("Replace hl text"))
 
 -- clear highlight when <Esc>
 vim.keymap.set("n", "<Esc>", "<Cmd>nohlsearch<CR><Esc>", desc_opt("nohlsearch<Esc>"))

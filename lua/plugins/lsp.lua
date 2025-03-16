@@ -70,7 +70,8 @@ return {
                     vim.keymap.set('n', 'gs', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>',
                         desc_opt('Show signature_help'))
                     -- Rename the variable under your cursor.
-                    vim.keymap.set('n', '<leader>cr', '<Cmd>lua vim.lsp.buf.rename()<Cr>', desc_opt('LSP Rename'))
+                    vim.keymap.set({ 'n', 'v' }, '<leader>cr', '<Cmd>lua vim.lsp.buf.rename()<Cr>',
+                        desc_opt('LSP Rename'))
                     vim.keymap.set({ 'n', 'x' }, '<F3>', '<Cmd>lua vim.lsp.buf.format({async = true})<Cr>',
                         desc_opt('Format using LSP'))
                     -- Execute a code action, usually your cursor needs to be on top of an error

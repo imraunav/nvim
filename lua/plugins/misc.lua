@@ -15,7 +15,15 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         main = "gitsigns",
-        opts = {},
+        opts = {
+            signs = {
+                add = { text = '+' },
+                change = { text = '~' },
+                delete = { text = '_' },
+                topdelete = { text = '‾' },
+                changedelete = { text = '~' },
+            },
+        },
     },
     { -- Useful plugin to show you pending keybinds.
         'folke/which-key.nvim',
