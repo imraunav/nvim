@@ -1,3 +1,5 @@
-require("core")
+require("config")
 
-vim.cmd("colorscheme retrobox")
+-- colorscheme
+vim.cmd.colorscheme("everforest")
+vim.opt.background = "dark"
