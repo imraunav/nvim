@@ -31,9 +31,36 @@ return {
 
                     appearance = {
                         use_nvim_cmp_as_default = true,
-                        nerd_font_variant = 'mono'
+                        nerd_font_variant = 'mono',
                     },
                     fuzzy = { implementation = "lua" },
+                    completion = {
+                        -- 'prefix' will fuzzy match on the text before the cursor
+                        -- 'full' will fuzzy match on the text before _and_ after the cursor
+                        -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
+                        keyword = { range = 'full' },
+
+                        -- Don't select by default, auto insert on selection
+                        list = { selection = { preselect = false, auto_insert = true } },
+                        menu = {
+                            auto_show = true,
+
+                            -- nvim-cmp style menu
+                            draw = {
+                                columns = {
+                                    { "label",    "label_description", gap = 1 },
+                                    { "kind_icon" }
+                                },
+                            },
+                            winblend = 15,
+                        },
+
+                        -- Show documentation when selecting a completion item
+                        documentation = { auto_show = true, auto_show_delay_ms = 400 },
+
+                        -- Display a preview of the selected item on the current line
+                        ghost_text = { enabled = true },
+                    },
                     signature = {
                         enabled = true, -- show signature
                         window = {
@@ -55,28 +82,28 @@ return {
                         return vim.tbl_extend('force', opts, { desc = desc })
                     end
                     -- Jump to the definition of the word under your cursor.
-                    vim.keymap.set('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', desc_opt('LSP Hover'))
+                    vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, desc_opt('LSP Hover'))
                     -- Jump to the type of the word under your cursor.
-                    vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', desc_opt('Goto Definition'))
+                    vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, desc_opt('Goto Definition'))
                     -- WARN: This is not Goto Definition, this is Goto Declaration.
                     --  For example, in C this would take you to the header.
-                    vim.keymap.set('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<Cr>', desc_opt('Goto Declaration'))
+                    vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, desc_opt('Goto Declaration'))
                     -- Jump to the implementation of the word under your cursor.
-                    vim.keymap.set('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<Cr>',
+                    vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end,
                         desc_opt('Goto implementation'))
-                    vim.keymap.set('n', 'go', '<Cmd>lua vim.lsp.buf.type_definition()<Cr>', desc_opt('Goto typedef'))
+                    vim.keymap.set('n', 'go', function() vim.lsp.buf.type_definition() end, desc_opt('Goto typedef'))
                     -- Find references for the word under your cursor.
-                    vim.keymap.set('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', desc_opt('Goto references'))
-                    vim.keymap.set('n', 'gs', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>',
+                    vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, desc_opt('Goto references'))
+                    vim.keymap.set('n', 'gs', function() vim.lsp.buf.signature_help() end,
                         desc_opt('Show signature_help'))
                     -- Rename the variable under your cursor.
-                    vim.keymap.set({ 'n', 'v' }, '<leader>cr', '<Cmd>lua vim.lsp.buf.rename()<Cr>',
+                    vim.keymap.set({ 'n', 'v' }, '<leader>cr', function() vim.lsp.buf.rename() end,
                         desc_opt('LSP Rename'))
-                    vim.keymap.set({ 'n', 'x' }, '<F3>', '<Cmd>lua vim.lsp.buf.format({async = true})<Cr>',
+                    vim.keymap.set({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end,
                         desc_opt('Format using LSP'))
                     -- Execute a code action, usually your cursor needs to be on top of an error
                     -- or a suggestion from your LSP for this to activate.
-                    vim.keymap.set('n', '<leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<Cr>', desc_opt('Code Actions'))
+                    vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, desc_opt('Code Actions'))
                 end
             })
 
@@ -118,6 +145,7 @@ return {
                     on_init = function(client)
                         if client.workspace_folders then
                             local path = client.workspace_folders[1].name
+                            ---@diagnostic disable-next-line: undefined-field
                             if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc')) then
                                 return
                             end

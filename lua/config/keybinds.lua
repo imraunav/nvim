@@ -28,6 +28,9 @@ vim.keymap.set("n", "<leader>bp", "<Cmd>bprev<CR>", desc_opt("Prev Buffer"))
 vim.keymap.set("n", "<leader>bd", "<Cmd>bdelete<CR>", desc_opt("Del Buffer"))
 vim.keymap.set("n", "<leader>bf", "<Cmd>buffers<CR>:b ", desc_opt("Buffer List"))
 
+-- find files (this is overwritten when we have any fuzzy picker like telescope)
+vim.keymap.set("n", "<leader>ff", ":find ", desc_opt("Find files"))
+
 -- easy split (don't need these, use CTRL-W <key>)
 -- vim.keymap.set("n", "<leader>vs", "<Cmd>vsplit<CR>", desc_opt("Vertical Split"))
 -- vim.keymap.set("n", "<leader>hs", "<Cmd>split<CR>", desc_opt("Horizontal Split"))
