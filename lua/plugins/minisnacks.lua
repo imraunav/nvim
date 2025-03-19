@@ -4,7 +4,7 @@ return {
         version = '*',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
-            -- require("mini.icons").setup()
+            require("mini.icons").setup()
             require("mini.git").setup()
             require("mini.diff").setup()
             require("mini.statusline").setup({
